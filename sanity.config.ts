@@ -3,6 +3,7 @@ import {visionTool} from '@sanity/vision'
 import {structureTool} from 'sanity/structure'
 import {schemaTypes} from './schemas'
 import {getStartedPlugin} from './plugins/sanity-plugin-tutorial'
+import {googleMapsInput} from '@sanity/google-maps-input'
 
 const devOnlyPlugins = [getStartedPlugin()]
 
@@ -13,10 +14,16 @@ export default defineConfig({
   projectId: 'pl70oeey',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool(), ...(isDev ? devOnlyPlugins : [])],
+  plugins: [
+    structureTool(),
+    visionTool(),
+    ...(isDev ? devOnlyPlugins : []),
+    googleMapsInput({
+      apiKey: 'AIzaSyCpJ3wCGBpEwKt3dMELUrb1IOj7QKmLdD4',
+    }),
+  ],
 
   schema: {
     types: schemaTypes,
   },
 })
-
